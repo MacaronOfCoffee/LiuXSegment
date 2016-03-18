@@ -1,7 +1,7 @@
 # LiuXSegment
 ##一款自定义的segment（类似网易）<br>
 ###使用方法
-####1.导入<br>` ``#import "LiuXSegmentView.h"` ``
+####1.导入<br>```#import "LiuXSegmentView.h" ```
 ####2.初始化方法<br>
 ` ``
     LiuXSegmentView *view=[[LiuXSegmentView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 60) titles:@[@"头条",@"社会"] clickBlick:^void(NSInteger index) {
