@@ -1,5 +1,8 @@
 # LiuXSegment
 ##一款自定义的segment（类似网易）<br>
+###效果图<br>
+![](http://i13.tietuku.cn/168020b0bdbd760a.gif)  
+
 ###使用方法
 ####1.导入<br>
 ```#import "LiuXSegmentView.h" ```
