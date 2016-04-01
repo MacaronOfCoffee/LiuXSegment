@@ -18,9 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-
-    
-    LiuXSegmentView *view=[[LiuXSegmentView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 60) titles:@[@"头条",@"社会",@"热点",@"体育",@"搞笑",@"科技",@"手机",@"娱乐"] clickBlick:^void(NSInteger index) {
+    self.view.backgroundColor=[UIColor whiteColor];
+    //iOS7新增属性
+    self.automaticallyAdjustsScrollViewInsets=NO;
+    LiuXSegmentView *view=[[LiuXSegmentView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 60) titles:@[@"头条",@"社会",@"热点",@"体育",@"搞笑",@"科技",@"手机",@"娱乐"] clickBlick:^void(NSInteger index) {
         NSLog(@"-----%ld",index);
     }];
     //以下属性可以根据需求修改
