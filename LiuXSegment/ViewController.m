@@ -7,9 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "LiuXSegmentView.h"
+#import "LXSegmentScrollView.h"
 
-@interface ViewController ()
+@interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
@@ -21,15 +21,43 @@
     self.view.backgroundColor=[UIColor whiteColor];
     //iOS7新增属性
     self.automaticallyAdjustsScrollViewInsets=NO;
-    LiuXSegmentView *view=[[LiuXSegmentView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 60) titles:@[@"头条",@"社会",@"热点",@"体育",@"搞笑",@"科技",@"手机",@"娱乐"] clickBlick:^void(NSInteger index) {
-        NSLog(@"-----%ld",index);
-    }];
-    //以下属性可以根据需求修改
-//    view.titleFont=[UIFont systemFontOfSize:30];
-//    view.defaultIndex=2;
-//    view.titleNomalColor=[UIColor blueColor];
-//    view.titleSelectColor=[UIColor orangeColor];
-    [self.view addSubview:view];
+ 
+    NSMutableArray *array=[NSMutableArray array];
+    for (int i =0; i<2; i++) {
+        UIView *view=[[UIView alloc] init];
+        if (i==0) {
+            view.backgroundColor=[UIColor brownColor];
+        }if (i==1) {
+            view.backgroundColor=[UIColor greenColor];
+        }
+        [array addObject:view];
+    }
+    
+    UITableView *tbale=[[UITableView alloc] init];
+    tbale.delegate=self;
+    tbale.dataSource=self;
+    tbale.rowHeight=100;
+    
+    [array addObject:tbale];
+    
+    LXSegmentScrollView *scView=[[LXSegmentScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64) titleArray:@[@"头条",@"搞笑",@"视频"] contentViewArray:array];
+    [self.view addSubview:scView];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellid=@"cell";
+    UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:cellid];
+    if (!cell) {
+        cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
+    }
+    cell.textLabel.text=@"dkdk";
+    
+    return cell;
+    
 }
 
 - (void)didReceiveMemoryWarning {

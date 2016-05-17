@@ -2,7 +2,7 @@
 //  LiuXSegmentView.m
 //  LiuXSegment
 //
-//  Created by 刘鑫 on 16/3/18.
+//  Created by liuxin on 16/3/18.
 //  Copyright © 2016年 liuxin. All rights reserved.
 //
 
@@ -35,6 +35,12 @@
 -(instancetype)initWithFrame:(CGRect)frame titles:(NSArray *)titleArray clickBlick:(btnClickBlock)block{
     self = [super initWithFrame:frame];
     if (self) {
+        
+        self.layer.shadowColor=[UIColor blackColor].CGColor;
+        self.layer.shadowOffset=CGSizeMake(2, 2);
+        self.layer.shadowRadius=2;
+        self.layer.shadowOpacity=.2;
+        
         _btn_w=0.0;
         if (titleArray.count<MAX_TitleNumInWindow+1) {
             _btn_w=windowContentWidth/titleArray.count;
@@ -52,10 +58,6 @@
         _bgScrollView.showsHorizontalScrollIndicator=NO;
         _bgScrollView.contentSize=CGSizeMake(_btn_w*titleArray.count, self.frame.size.height);
         [self addSubview:_bgScrollView];
-        
-        UIView *line=[[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-1, _btn_w*titleArray.count, 1)];
-        line.backgroundColor=[UIColor lightGrayColor];
-        [_bgScrollView addSubview:line];
         
         _selectLine=[[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-2, _btn_w, 2)];
         _selectLine.backgroundColor=_titleSelectColor;
@@ -153,6 +155,7 @@
         if (btn.tag-1==_defaultIndex-1) {
             _titleBtn=btn;
             btn.selected=YES;
+            _selectLine.frame=CGRectMake(btn.frame.origin.x, self.frame.size.height-2, btn.frame.size.width, 2);
         }else{
             btn.selected=NO;
         }

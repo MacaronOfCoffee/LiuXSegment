@@ -2,7 +2,7 @@
 //  LiuXSegmentView.h
 //  LiuXSegment
 //
-//  Created by 刘鑫 on 16/3/18.
+//  Created by liuxin on 16/3/18.
 //  Copyright © 2016年 liuxin. All rights reserved.
 //
 

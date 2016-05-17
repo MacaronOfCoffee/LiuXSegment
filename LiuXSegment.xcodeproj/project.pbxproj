@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B1ACD321CEAE68D0058BE98 /* LiuXSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1ACD311CEAE68D0058BE98 /* LiuXSegmentView.m */; };
+		4B1ACD351CEAE6A90058BE98 /* LXSegmentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1ACD341CEAE6A90058BE98 /* LXSegmentScrollView.m */; };
 		4BA7409B1C9B9C28000A00BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7409A1C9B9C28000A00BB /* main.m */; };
 		4BA7409E1C9B9C28000A00BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7409D1C9B9C28000A00BB /* AppDelegate.m */; };
 		4BA740A11C9B9C28000A00BB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA740A01C9B9C28000A00BB /* ViewController.m */; };
@@ -15,7 +17,6 @@
 		4BA740A91C9B9C28000A00BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BA740A71C9B9C28000A00BB /* LaunchScreen.storyboard */; };
 		4BA740B41C9B9C28000A00BB /* LiuXSegmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA740B31C9B9C28000A00BB /* LiuXSegmentTests.m */; };
 		4BA740BF1C9B9C28000A00BB /* LiuXSegmentUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA740BE1C9B9C28000A00BB /* LiuXSegmentUITests.m */; };
-		4BA740CE1C9B9C7D000A00BB /* LiuXSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA740CD1C9B9C7D000A00BB /* LiuXSegmentView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B1ACD301CEAE68D0058BE98 /* LiuXSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiuXSegmentView.h; sourceTree = "<group>"; };
+		4B1ACD311CEAE68D0058BE98 /* LiuXSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiuXSegmentView.m; sourceTree = "<group>"; };
+		4B1ACD331CEAE6A90058BE98 /* LXSegmentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSegmentScrollView.h; sourceTree = "<group>"; };
+		4B1ACD341CEAE6A90058BE98 /* LXSegmentScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSegmentScrollView.m; sourceTree = "<group>"; };
 		4BA740961C9B9C28000A00BB /* LiuXSegment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiuXSegment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BA7409A1C9B9C28000A00BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4BA7409C1C9B9C28000A00BB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -52,8 +57,6 @@
 		4BA740BA1C9B9C28000A00BB /* LiuXSegmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiuXSegmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BA740BE1C9B9C28000A00BB /* LiuXSegmentUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiuXSegmentUITests.m; sourceTree = "<group>"; };
 		4BA740C01C9B9C28000A00BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4BA740CC1C9B9C7D000A00BB /* LiuXSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiuXSegmentView.h; sourceTree = "<group>"; };
-		4BA740CD1C9B9C7D000A00BB /* LiuXSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiuXSegmentView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B1ACD2F1CEAE68D0058BE98 /* LXSegment */ = {
+			isa = PBXGroup;
+			children = (
+				4B1ACD301CEAE68D0058BE98 /* LiuXSegmentView.h */,
+				4B1ACD311CEAE68D0058BE98 /* LiuXSegmentView.m */,
+				4B1ACD331CEAE6A90058BE98 /* LXSegmentScrollView.h */,
+				4B1ACD341CEAE6A90058BE98 /* LXSegmentScrollView.m */,
+			);
+			path = LXSegment;
+			sourceTree = "<group>";
+		};
 		4BA7408D1C9B9C28000A00BB = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +118,7 @@
 		4BA740981C9B9C28000A00BB /* LiuXSegment */ = {
 			isa = PBXGroup;
 			children = (
+				4B1ACD2F1CEAE68D0058BE98 /* LXSegment */,
 				4BA7409C1C9B9C28000A00BB /* AppDelegate.h */,
 				4BA7409D1C9B9C28000A00BB /* AppDelegate.m */,
 				4BA7409F1C9B9C28000A00BB /* ViewController.h */,
@@ -113,8 +128,6 @@
 				4BA740A71C9B9C28000A00BB /* LaunchScreen.storyboard */,
 				4BA740AA1C9B9C28000A00BB /* Info.plist */,
 				4BA740991C9B9C28000A00BB /* Supporting Files */,
-				4BA740CC1C9B9C7D000A00BB /* LiuXSegmentView.h */,
-				4BA740CD1C9B9C7D000A00BB /* LiuXSegmentView.m */,
 			);
 			path = LiuXSegment;
 			sourceTree = "<group>";
@@ -275,10 +288,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BA740CE1C9B9C7D000A00BB /* LiuXSegmentView.m in Sources */,
+				4B1ACD321CEAE68D0058BE98 /* LiuXSegmentView.m in Sources */,
 				4BA740A11C9B9C28000A00BB /* ViewController.m in Sources */,
 				4BA7409E1C9B9C28000A00BB /* AppDelegate.m in Sources */,
 				4BA7409B1C9B9C28000A00BB /* main.m in Sources */,
+				4B1ACD351CEAE6A90058BE98 /* LXSegmentScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +518,7 @@
 				4BA740C51C9B9C28000A00BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BA740C61C9B9C28000A00BB /* Build configuration list for PBXNativeTarget "LiuXSegmentTests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +527,7 @@
 				4BA740C81C9B9C28000A00BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BA740C91C9B9C28000A00BB /* Build configuration list for PBXNativeTarget "LiuXSegmentUITests" */ = {
 			isa = XCConfigurationList;
@@ -520,6 +536,7 @@
 				4BA740CB1C9B9C28000A00BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
