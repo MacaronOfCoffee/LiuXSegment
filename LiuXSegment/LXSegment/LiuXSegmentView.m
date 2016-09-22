@@ -11,11 +11,14 @@
 #define MAX_TitleNumInWindow 5
 
 #import "LiuXSegmentView.h"
+#import "CALayer+LXAdd.h"
+#import "NSString+Size.h"
 
 @interface LiuXSegmentView()
 
 @property (nonatomic,strong) NSMutableArray *btns;
 @property (nonatomic,strong) NSArray *titles;
+@property (nonatomic,strong) NSMutableArray *titlesStrWidthArray;
 @property (nonatomic,strong) UIButton *titleBtn;
 @property (nonatomic,strong) UIScrollView *bgScrollView;
 @property (nonatomic,strong) UIView *selectLine;
@@ -24,13 +27,6 @@
 
 @implementation LiuXSegmentView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 -(instancetype)initWithFrame:(CGRect)frame titles:(NSArray *)titleArray clickBlick:(btnClickBlock)block{
     self = [super initWithFrame:frame];
@@ -41,50 +37,61 @@
         self.layer.shadowRadius=2;
         self.layer.shadowOpacity=.2;
         
-        _btn_w=0.0;
-        if (titleArray.count<MAX_TitleNumInWindow+1) {
-            _btn_w=windowContentWidth/titleArray.count;
-        }else{
-            _btn_w=windowContentWidth/MAX_TitleNumInWindow;
-        }
         _titles=titleArray;
-        _defaultIndex=1;
-        _titleFont=[UIFont systemFontOfSize:15];
-        _btns=[[NSMutableArray alloc] initWithCapacity:0];
-        _titleNomalColor=[UIColor blackColor];
-        _titleSelectColor=SFQRedColor;
-        _bgScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, windowContentWidth, self.frame.size.height)];
-        _bgScrollView.backgroundColor=[UIColor whiteColor];
-        _bgScrollView.showsHorizontalScrollIndicator=NO;
-        _bgScrollView.contentSize=CGSizeMake(_btn_w*titleArray.count, self.frame.size.height);
-        [self addSubview:_bgScrollView];
         
-        _selectLine=[[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-2, _btn_w, 2)];
-        _selectLine.backgroundColor=_titleSelectColor;
-        [_bgScrollView addSubview:_selectLine];
+        [self initData];
         
-        for (int i=0; i<titleArray.count; i++) {
-            UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
-            btn.frame=CGRectMake(_btn_w*i, 0, _btn_w, self.frame.size.height-2);
-            btn.tag=i+1;
-            [btn setTitle:titleArray[i] forState:UIControlStateNormal];
-            [btn setTitleColor:_titleNomalColor forState:UIControlStateNormal];
-            [btn setTitleColor:_titleSelectColor forState:UIControlStateSelected];
-            [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchDown];
-            [btn setBackgroundColor:[UIColor whiteColor]];
-            btn.titleLabel.font=_titleFont;
-            [_bgScrollView addSubview:btn];
-            [_btns addObject:btn];
-            if (i==0) {
-                _titleBtn=btn;
-                btn.selected=YES;
-            }
-            self.block=block;
-            
-        }
+        [self initViews];
+        
+        self.block=block;
+       
     }
     
     return self;
+}
+
+-(void)initData{
+    _btn_w=0.0;
+    if (_titles.count<MAX_TitleNumInWindow+1) {
+        _btn_w=windowContentWidth/_titles.count;
+    }else{
+        _btn_w=windowContentWidth/MAX_TitleNumInWindow;
+    }
+  
+    _defaultIndex=1;
+    _titleFont=[UIFont systemFontOfSize:15];
+    _btns=[[NSMutableArray alloc] initWithCapacity:0];
+    _titleNomalColor=[UIColor blackColor];
+    _titleSelectColor=SFQRedColor;
+}
+
+-(void)initViews{
+    self.bgScrollView.contentSize=CGSizeMake(_btn_w*_titles.count, self.frame.size.height);
+    [self addSubview:_bgScrollView];
+    
+    [self.bgScrollView addSubview:self.selectLine];
+    
+    for (int i=0; i<_titles.count; i++) {
+        UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame=CGRectMake(_btn_w*i, 0, _btn_w, self.frame.size.height-2);
+        btn.tag=i+1;
+        [btn setTitle:_titles[i] forState:UIControlStateNormal];
+        [btn setTitleColor:_titleNomalColor forState:UIControlStateNormal];
+        [btn setTitleColor:_titleSelectColor forState:UIControlStateSelected];
+        [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchDown];
+        [btn setBackgroundColor:[UIColor whiteColor]];
+        btn.titleLabel.font=_titleFont;
+        [_bgScrollView addSubview:btn];
+        [_btns addObject:btn];
+        if (i==0) {
+            _titleBtn=btn;
+            btn.selected=YES;
+        }
+        
+        //计算字串长度
+        CGFloat strW = [self getlineWidth:i];
+        [self.titlesStrWidthArray addObject:@(strW)];
+    }
 }
 
 -(void)btnClick:(UIButton *)btn{
@@ -114,8 +121,9 @@
     
     [UIView animateWithDuration:.2 animations:^{
         
+        CGFloat lineW = [self.titlesStrWidthArray[btn.tag-1] floatValue];
         [_bgScrollView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
-        _selectLine.frame=CGRectMake(btn.frame.origin.x, self.frame.size.height-2, btn.frame.size.width, 2);
+        _selectLine.frame=CGRectMake(btn.frame.origin.x+(_btn_w-lineW)/2, self.frame.size.height-2, lineW, 2);
         
     } completion:^(BOOL finished) {
         
@@ -123,7 +131,48 @@
     
 }
 
+-(void)updateselectLineFrameWithoffset:(CGFloat)offsetx{
+//    NSLog(@"====%f",offsetx);
+    for (UIButton *btn in _btns) {
+       
+        if (btn.tag-1==_defaultIndex-1) {
+            _titleBtn=btn;
 
+            CGFloat w = [self.titlesStrWidthArray[btn.tag-1] floatValue];//字的宽度
+            CGFloat line_x = (_btn_w-w)/2+(btn.tag-1)*_btn_w;
+            CGFloat nextw=0;
+            if (offsetx<(btn.tag-1)*windowContentWidth) {
+                NSLog(@"向左");
+                nextw = [self.titlesStrWidthArray[btn.tag-2] floatValue];
+                CGFloat max_w = (_btn_w*2 + w +nextw)/2;
+                CGFloat endoffsetx = (btn.tag-1)*windowContentWidth-offsetx;
+                
+                if (_selectLine.layer.width<max_w) {
+                    _selectLine.layer.width=w+MIN(endoffsetx, max_w);
+                }else{
+               
+                    _selectLine.layer.width=max_w;
+                }
+                _selectLine.layer.right=line_x+w;
+                
+            }else{
+                NSLog(@"向右");
+                nextw = [self.titlesStrWidthArray[btn.tag] floatValue];
+                CGFloat max_w = (_btn_w*2 + w +nextw)/2;
+                CGFloat endoffsetx = offsetx - (btn.tag-1)*windowContentWidth;
+                if (_selectLine.layer.width<max_w) {
+                    _selectLine.layer.width=w+MIN(endoffsetx, max_w);
+                }else{
+                    _selectLine.layer.width=max_w;
+                }
+                
+            }
+            
+        }else{
+            
+        }
+    }
+}
 
 -(void)setTitleNomalColor:(UIColor *)titleNomalColor{
     _titleNomalColor=titleNomalColor;
@@ -155,11 +204,54 @@
         if (btn.tag-1==_defaultIndex-1) {
             _titleBtn=btn;
             btn.selected=YES;
-            _selectLine.frame=CGRectMake(btn.frame.origin.x, self.frame.size.height-2, btn.frame.size.width, 2);
+            CGFloat lineW = [self.titlesStrWidthArray[btn.tag-1] floatValue];
+
+            [UIView animateWithDuration:0.3 animations:^{
+                _selectLine.layer.left=btn.frame.origin.x+(_btn_w-lineW)/2;
+                _selectLine.layer.width=lineW;
+            }];
+           
         }else{
             btn.selected=NO;
         }
     }
 }
+
+//获取线的宽度
+-(CGFloat)getlineWidth:(NSInteger )strIndex{
+    NSString *firstStr = _titles[strIndex];
+    CGFloat lineW = [firstStr widthWithFont:_titleFont constrainedToHeight:self.frame.size.height-2]+4;
+    
+    return lineW;
+}
+
+#pragma mark ---INITUI---
+
+-(NSMutableArray *)titlesStrWidthArray{
+    if (!_titlesStrWidthArray) {
+        _titlesStrWidthArray = [[NSMutableArray alloc] init];
+    }
+    return _titlesStrWidthArray;
+}
+
+-(UIScrollView *)bgScrollView{
+    if (!_bgScrollView) {
+        _bgScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, windowContentWidth, self.frame.size.height)];
+        _bgScrollView.backgroundColor=[UIColor whiteColor];
+        _bgScrollView.showsHorizontalScrollIndicator=NO;
+      
+    }
+    return _bgScrollView;
+}
+
+-(UIView *)selectLine{
+    if (!_selectLine) {
+        CGFloat lineW = [self getlineWidth:0];
+        _selectLine=[[UIView alloc] initWithFrame:CGRectMake((_btn_w-lineW)/2, self.frame.size.height-2, lineW, 2)];
+        _selectLine.backgroundColor=_titleSelectColor;
+    }
+    return _selectLine;
+}
+
 
 @end

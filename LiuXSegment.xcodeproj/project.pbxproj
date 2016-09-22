@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4B1ACD321CEAE68D0058BE98 /* LiuXSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1ACD311CEAE68D0058BE98 /* LiuXSegmentView.m */; };
 		4B1ACD351CEAE6A90058BE98 /* LXSegmentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1ACD341CEAE6A90058BE98 /* LXSegmentScrollView.m */; };
+		4B56317E1D76A83300204081 /* CALayer+LXAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B56317B1D76A83300204081 /* CALayer+LXAdd.m */; };
+		4B56317F1D76A83300204081 /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B56317D1D76A83300204081 /* NSString+Size.m */; };
 		4BA7409B1C9B9C28000A00BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7409A1C9B9C28000A00BB /* main.m */; };
 		4BA7409E1C9B9C28000A00BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA7409D1C9B9C28000A00BB /* AppDelegate.m */; };
 		4BA740A11C9B9C28000A00BB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA740A01C9B9C28000A00BB /* ViewController.m */; };
@@ -41,6 +43,10 @@
 		4B1ACD311CEAE68D0058BE98 /* LiuXSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiuXSegmentView.m; sourceTree = "<group>"; };
 		4B1ACD331CEAE6A90058BE98 /* LXSegmentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXSegmentScrollView.h; sourceTree = "<group>"; };
 		4B1ACD341CEAE6A90058BE98 /* LXSegmentScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXSegmentScrollView.m; sourceTree = "<group>"; };
+		4B56317A1D76A83300204081 /* CALayer+LXAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+LXAdd.h"; sourceTree = "<group>"; };
+		4B56317B1D76A83300204081 /* CALayer+LXAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+LXAdd.m"; sourceTree = "<group>"; };
+		4B56317C1D76A83300204081 /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Size.h"; sourceTree = "<group>"; };
+		4B56317D1D76A83300204081 /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Size.m"; sourceTree = "<group>"; };
 		4BA740961C9B9C28000A00BB /* LiuXSegment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiuXSegment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BA7409A1C9B9C28000A00BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4BA7409C1C9B9C28000A00BB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -87,12 +93,24 @@
 		4B1ACD2F1CEAE68D0058BE98 /* LXSegment */ = {
 			isa = PBXGroup;
 			children = (
+				4B5631791D76A81400204081 /* Category */,
 				4B1ACD301CEAE68D0058BE98 /* LiuXSegmentView.h */,
 				4B1ACD311CEAE68D0058BE98 /* LiuXSegmentView.m */,
 				4B1ACD331CEAE6A90058BE98 /* LXSegmentScrollView.h */,
 				4B1ACD341CEAE6A90058BE98 /* LXSegmentScrollView.m */,
 			);
 			path = LXSegment;
+			sourceTree = "<group>";
+		};
+		4B5631791D76A81400204081 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				4B56317A1D76A83300204081 /* CALayer+LXAdd.h */,
+				4B56317B1D76A83300204081 /* CALayer+LXAdd.m */,
+				4B56317C1D76A83300204081 /* NSString+Size.h */,
+				4B56317D1D76A83300204081 /* NSString+Size.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		4BA7408D1C9B9C28000A00BB = {
@@ -291,6 +309,8 @@
 				4B1ACD321CEAE68D0058BE98 /* LiuXSegmentView.m in Sources */,
 				4BA740A11C9B9C28000A00BB /* ViewController.m in Sources */,
 				4BA7409E1C9B9C28000A00BB /* AppDelegate.m in Sources */,
+				4B56317E1D76A83300204081 /* CALayer+LXAdd.m in Sources */,
+				4B56317F1D76A83300204081 /* NSString+Size.m in Sources */,
 				4BA7409B1C9B9C28000A00BB /* main.m in Sources */,
 				4B1ACD351CEAE6A90058BE98 /* LXSegmentScrollView.m in Sources */,
 			);

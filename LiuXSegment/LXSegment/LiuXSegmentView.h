@@ -48,4 +48,6 @@ typedef void(^btnClickBlock)(NSInteger index);
  */
 -(instancetype)initWithFrame:(CGRect)frame titles:(NSArray *)titleArray clickBlick:(btnClickBlock)block;
 
+-(void)updateselectLineFrameWithoffset:(CGFloat)offsetx;
+
 @end

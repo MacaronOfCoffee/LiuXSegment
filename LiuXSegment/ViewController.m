@@ -26,9 +26,9 @@
     for (int i =0; i<2; i++) {
         UIView *view=[[UIView alloc] init];
         if (i==0) {
-            view.backgroundColor=[UIColor brownColor];
+            view.backgroundColor=[UIColor whiteColor];
         }if (i==1) {
-            view.backgroundColor=[UIColor greenColor];
+            view.backgroundColor=[UIColor grayColor];
         }
         [array addObject:view];
     }
@@ -40,7 +40,7 @@
     
     [array addObject:tbale];
     
-    LXSegmentScrollView *scView=[[LXSegmentScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64) titleArray:@[@"头条",@"搞笑",@"视频"] contentViewArray:array];
+    LXSegmentScrollView *scView=[[LXSegmentScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64) titleArray:@[@"头条新闻",@"搞笑",@"视频想"] contentViewArray:array];
     [self.view addSubview:scView];
 }
 
@@ -54,7 +54,7 @@
     if (!cell) {
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid];
     }
-    cell.textLabel.text=@"dkdk";
+    cell.textLabel.text=@"test";
     
     return cell;
     

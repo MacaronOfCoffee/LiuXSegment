@@ -28,7 +28,7 @@
         [self addSubview:self.bgScrollView];
         
 
-        _segmentToolView=[[LiuXSegmentView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_W, 44) titles:titleArray clickBlick:^void(NSInteger index) {
+        _segmentToolView=[[LiuXSegmentView alloc] initWithFrame:CGRectMake(0, 0, MainScreen_W, 35) titles:titleArray clickBlick:^void(NSInteger index) {
             NSLog(@"-----%ld",index);
             [_bgScrollView setContentOffset:CGPointMake(MainScreen_W*(index-1), 0)];
         }];
@@ -67,7 +67,12 @@
     return _bgScrollView;
 }
 
-
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGPoint point = scrollView.contentOffset;
+    
+    [_segmentToolView updateselectLineFrameWithoffset:point.x];
+    
+}
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
@@ -75,6 +80,7 @@
     {
         NSInteger p=_bgScrollView.contentOffset.x/MainScreen_W;
         _segmentToolView.defaultIndex=p+1;
+        
         
     }
     
