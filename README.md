@@ -1,7 +1,7 @@
 # LiuXSegment
 ##一款自定义的segment（类似网易）<br>
 ###效果图<br>
-![](http://i2.buimg.com/fdd8723cefa3c132.gif)  
+![](http://upload-images.jianshu.io/upload_images/292993-c91c7bc7575458ec.gif?imageMogr2/auto-orient/strip)  
 
 ###使用方法
 ####1.导入<br>
