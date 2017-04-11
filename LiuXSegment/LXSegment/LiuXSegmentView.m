@@ -157,7 +157,12 @@
                 
             }else{
                 NSLog(@"向右");
-                nextw = [self.titlesStrWidthArray[btn.tag] floatValue];
+                if(self.titlesStrWidthArray.count == btn.tag){
+                    nextw = [self.titlesStrWidthArray[btn.tag - 1] floatValue];
+                }else{
+                    nextw = [self.titlesStrWidthArray[btn.tag] floatValue];
+                }
+                
                 CGFloat max_w = (_btn_w*2 + w +nextw)/2;
                 CGFloat endoffsetx = offsetx - (btn.tag-1)*windowContentWidth;
                 if (_selectLine.layer.width<max_w) {
